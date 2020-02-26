@@ -12,34 +12,41 @@ import org.springframework.web.bind.annotation.RestController;
 
 //import com.courses.module.DAO.CourseDAOinterface;
 import com.courses.module.DTO.CourseDTO;
+import com.courses.module.DTO.UpdateDTO;
 import com.courses.module.model.Course;
 import com.courses.module.services.CourseService;
 
 @RestController
 public class Controller {
 
-	 @Autowired
-	 private CourseService service;
-	 //private CourseDAOinterface dao;
+	@Autowired
+	private CourseService service;
+	// private CourseDAOinterface dao;
 
 	@GetMapping("/view")
 	public List<Course> viewCourse() {
 		return service.view();
-		}
-	@GetMapping("/new")
-	public String insertCourse(@RequestBody CourseDTO c) {
-		service.insert(c);	
-		return "insertion successful";
-}
-	@PostMapping("/modify")
-	public String updateCourse(@RequestBody Course c)
-	{
-		service.update(c);
-		return "updation successful";
 	}
+
+	@GetMapping("/viewbyid/{id}")
+	public Course  viewbyId(@PathVariable int id) {
+		return service.viewbyId(id);
+	}
+
+	@GetMapping("/new")
+	public String insertCourse(@RequestBody CourseDTO dto) {
+		service.insert(dto);
+		return "insertion successful";
+	}
+
+	@PostMapping("/modify")
+	public String updateCourse(@RequestBody UpdateDTO dto) {
+		return service.update(dto);
+		
+	}
+
 	@DeleteMapping("/remove/{id}")
-	public String deleteCourse(@PathVariable int id)
-	{
+	public String deleteCourse(@PathVariable int id) {
 		return service.delete(id);
 	}
 }

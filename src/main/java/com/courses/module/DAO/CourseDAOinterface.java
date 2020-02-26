@@ -9,8 +9,10 @@ import com.courses.module.model.Course;
 public interface CourseDAOinterface {
 	
 	public List<Course> views();
+	public Course viewbyId(int id);
     public void insert(Course c);
 	public boolean isIdExists(int id);
-	public void update(Course c);
+	public boolean isActive(int id);
+	public String update(Course c);
 	public String delete(int id);
 }

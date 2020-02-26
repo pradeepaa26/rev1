@@ -67,6 +67,8 @@ public class Course {
 	private Date created_on;
 	@Column(name="`modified_on`")
 	private Date modified_on;
+	@Column(name="`is_active`")
+	private boolean isActive;
 	public int getId() {
 		return id;
 	}
@@ -158,6 +160,13 @@ public class Course {
 	public void setModified_on(Date modified_on) {
 		this.modified_on = modified_on;
 	}
+	public boolean isActive() {
+		return isActive;
+	}
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
 	
 	
 }
